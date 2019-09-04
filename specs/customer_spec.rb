@@ -3,6 +3,7 @@ require("minitest/pride")
 require_relative("../Drink.rb")
 require_relative("../Customer.rb")
 require_relative("../Pub.rb")
+require_relative("../Food.rb")
 
 class TestCustomer < MiniTest::Test
 
@@ -11,12 +12,17 @@ class TestCustomer < MiniTest::Test
     @customer1 = Customer.new("Kevin", 10, 29)
     @customer2 = Customer.new("Nathan", 20, 27)
     @customer3 = Customer.new("Niall", 50, 16)
+    @customer4 = Customer.new("Colin", 100, 67)
 
     @drink1 = Drink.new("Beer", 4, 3)
     @drink2 = Drink.new("Cider", 3, 2)
     @drink3 = Drink.new("Wine", 5, 4)
 
     @drinks = [@drink1, @drink2, @drink3]
+
+    @food1 = Food.new("Crisps", 2, 3)
+    @food2 = Food.new("Nuts", 1, 2)
+    @food3 = Food.new("Pork Scratchings", 4, 5)
 
     @pub = Pub.new("The Winchester", 1000, @drinks)
 
@@ -62,14 +68,6 @@ class TestCustomer < MiniTest::Test
     assert_equal(3, @customer1.drunkenness())
   end
 
-  # def test_check_age__true()
-  #   assert_equal(true, @customer1.check_age())
-  # end
-  #
-  # def test_check_age__false()
-  #   assert_equal(false, @customer3.check_age())
-  # end
-
   def test_customer_is_drunk()
     @customer1.buys_drink(@drink3, @pub, @customer1)
     @customer1.buys_drink(@drink3, @pub, @customer1)
@@ -83,6 +81,19 @@ class TestCustomer < MiniTest::Test
     @customer1.buys_drink(@drink3, @pub, @customer1)
     result = @customer1.buys_drink(@drink3, @pub, @customer1)
     assert_equal(12, result)
+  end
+
+  def test_decrease_drunkenness()
+    @customer2.decrease_drunkenness(@food1)
+    assert_equal(-3, @customer2.drunkenness())
+  end
+
+  def test_buy_food()
+    @customer4.buys_drink(@drink1, @pub, @customer4)
+    @customer4.buys_drink(@drink1, @pub, @customer4)
+    @customer4.buys_food(@food3)
+    assert_equal(1, @customer4.drunkenness())
+    assert_equal(88, @customer4.wallet())
   end
 
 end
