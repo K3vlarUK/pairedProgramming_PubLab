@@ -51,6 +51,10 @@ class TestPub < MiniTest::Test
     assert_equal(24, @pub.stock_count())
   end
 
+  def test_stock_value()
+    assert_equal(90, @pub.stock_value())
+  end
+
   def test_increase_till()
     @pub.increase_till(@drink3)
     assert_equal(1005, @pub.till())
