@@ -6,9 +6,9 @@ class TestDrink < MiniTest::Test
 
   def setup
 
-    @drink1 = Drink.new("Beer", 4)
-    @drink2 = Drink.new("Cider", 3)
-    @drink3 = Drink.new("Wine", 5)
+    @drink1 = Drink.new("Beer", 4, 3)
+    @drink2 = Drink.new("Cider", 3, 2)
+    @drink3 = Drink.new("Wine", 5, 4)
 
   end
 
@@ -18,6 +18,10 @@ class TestDrink < MiniTest::Test
 
   def test_drink_has_price()
     assert_equal(3, @drink2.get_price())
+  end
+
+  def test_get_alcohol_level()
+    assert_equal(4, @drink3.get_alcohol_level())
   end
 
 end

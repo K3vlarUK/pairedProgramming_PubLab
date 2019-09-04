@@ -8,12 +8,12 @@ class TestCustomer < MiniTest::Test
 
   def setup
 
-    @customer1 = Customer.new("Kevin", 10)
-    @customer2 = Customer.new("Nathan", 20)
+    @customer1 = Customer.new("Kevin", 10, 29)
+    @customer2 = Customer.new("Nathan", 20, 27)
 
-    @drink1 = Drink.new("Beer", 4)
-    @drink2 = Drink.new("Cider", 3)
-    @drink3 = Drink.new("Wine", 5)
+    @drink1 = Drink.new("Beer", 4, 3)
+    @drink2 = Drink.new("Cider", 3, 2)
+    @drink3 = Drink.new("Wine", 5, 4)
 
     @drinks = [@drink1, @drink2, @drink3]
 
@@ -38,6 +38,14 @@ class TestCustomer < MiniTest::Test
     @customer1.buys_drink(@drink2, @pub)
     assert_equal(7, @customer1.wallet())
     assert_equal(1003, @pub.till())
+  end
+
+  def test_get_age()
+    assert_equal(29, @customer1.get_age())
+  end
+
+  def test_get_drunkenness()
+    assert_equal(0, @customer2.get_drunkenness())
   end
 
 end
