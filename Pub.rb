@@ -2,14 +2,14 @@ class Pub
 
   attr_reader :name, :till
 
-  def initialize(name, till, drinks)
+  def initialize(name, till, stock)
     @name = name
     @till = till
-    @drinks = drinks
+    @stock = stock
   end
 
   def drinks_menu()
-    return @drinks.length()
+    return @stock.length()
   end
 
   def increase_till(drink)
@@ -22,6 +22,14 @@ class Pub
     elsif customer.age() < 18
       return false
     end
+  end
+
+  def stock_count()
+    total_stock = 0
+    for drink in @stock
+      total_stock += drink[:quantity]
+    end
+    return total_stock
   end
 
 end

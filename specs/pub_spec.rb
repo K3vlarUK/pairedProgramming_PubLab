@@ -12,9 +12,22 @@ class TestPub < MiniTest::Test
     @drink2 = Drink.new("Cider", 3, 2)
     @drink3 = Drink.new("Wine", 5, 4)
 
-    @drinks = [@drink1, @drink2, @drink3]
+    @stock = [
+      {
+        bev: @drink1,
+        quantity: 6
+      },
+      {
+        bev: @drink2,
+        quantity: 12
+      },
+      {
+        bev: @drink3,
+        quantity: 6
+        }
+      ]
 
-    @pub = Pub.new("The Winchester", 1000, @drinks)
+    @pub = Pub.new("The Winchester", 1000, @stock)
 
     @customer1 = Customer.new("Kevin", 10, 29)
     @customer2 = Customer.new("Nathan", 20, 27)
@@ -32,6 +45,10 @@ class TestPub < MiniTest::Test
 
   def test_pub_has_drinks()
     assert_equal(3, @pub.drinks_menu())
+  end
+
+  def test_stock_count()
+    assert_equal(24, @pub.stock_count())
   end
 
   def test_increase_till()
