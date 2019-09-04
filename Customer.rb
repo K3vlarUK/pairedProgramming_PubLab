@@ -13,20 +13,20 @@ class Customer
     @wallet -= drink.get_price()
   end
 
-  def check_age()
-    if @age >= 18
-      return true
-    elsif @age < 18
-      return false
-    end
-  end
+  # def check_age()
+  #   if @age >= 18
+  #     return true
+  #   elsif @age < 18
+  #     return false
+  #   end
+  # end
 
   def increase_drunkenness(drink)
     @drunkenness += drink.get_alcohol_level()
   end
 
-  def buys_drink(drink,pub)
-    if check_age() == true
+  def buys_drink(drink,pub,customer)
+    if pub.check_age(customer) == true
       # if (@drunkenness + drink.get_alcohol_level()) < 10
       if @drunkenness < 10
         reduce_wallet(drink)

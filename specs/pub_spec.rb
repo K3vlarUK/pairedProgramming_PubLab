@@ -8,13 +8,17 @@ class TestPub < MiniTest::Test
 
   def setup
 
-    @drink1 = Drink.new("Beer", 4)
-    @drink2 = Drink.new("Cider", 3)
-    @drink3 = Drink.new("Wine", 5)
+    @drink1 = Drink.new("Beer", 4, 3)
+    @drink2 = Drink.new("Cider", 3, 2)
+    @drink3 = Drink.new("Wine", 5, 4)
 
     @drinks = [@drink1, @drink2, @drink3]
 
     @pub = Pub.new("The Winchester", 1000, @drinks)
+
+    @customer1 = Customer.new("Kevin", 10, 29)
+    @customer2 = Customer.new("Nathan", 20, 27)
+    @customer3 = Customer.new("Niall", 50, 16)
 
   end
 
@@ -33,6 +37,14 @@ class TestPub < MiniTest::Test
   def test_increase_till()
     @pub.increase_till(@drink3)
     assert_equal(1005, @pub.till())
+  end
+
+  def test_check_age__true()
+    assert_equal(true, @pub.check_age(@customer1))
+  end
+
+  def test_check_age__false()
+    assert_equal(false, @pub.check_age(@customer3))
   end
 
 end

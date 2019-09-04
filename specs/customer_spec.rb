@@ -36,14 +36,14 @@ class TestCustomer < MiniTest::Test
   end
 
   def test_customer_buys_drink__legal()
-    @customer1.buys_drink(@drink2, @pub)
+    @customer1.buys_drink(@drink2, @pub, @customer1)
     assert_equal(7, @customer1.wallet())
     assert_equal(1003, @pub.till())
     assert_equal(2, @customer1.drunkenness())
   end
 
   def test_customer_buys_drink__illegal()
-    assert_equal("Too young! Get out!", @customer3.buys_drink(@drink2, @pub))
+    assert_equal("Too young! Get out!", @customer3.buys_drink(@drink2, @pub, @customer3))
     assert_equal(50, @customer3.wallet())
     assert_equal(1000, @pub.till())
     assert_equal(0, @customer3.drunkenness())
@@ -62,26 +62,26 @@ class TestCustomer < MiniTest::Test
     assert_equal(3, @customer1.drunkenness())
   end
 
-  def test_check_age__true()
-    assert_equal(true, @customer1.check_age())
-  end
-
-  def test_check_age__false()
-    assert_equal(false, @customer3.check_age())
-  end
+  # def test_check_age__true()
+  #   assert_equal(true, @customer1.check_age())
+  # end
+  #
+  # def test_check_age__false()
+  #   assert_equal(false, @customer3.check_age())
+  # end
 
   def test_customer_is_drunk()
-    @customer1.buys_drink(@drink3, @pub)
-    @customer1.buys_drink(@drink3, @pub)
-    @customer1.buys_drink(@drink3, @pub)
-    result = @customer1.buys_drink(@drink3, @pub)
+    @customer1.buys_drink(@drink3, @pub, @customer1)
+    @customer1.buys_drink(@drink3, @pub, @customer1)
+    @customer1.buys_drink(@drink3, @pub, @customer1)
+    result = @customer1.buys_drink(@drink3, @pub, @customer1)
     assert_equal("Too drunk! Get out!", result)
   end
 
   def test_customer_is_not_drunk()
-    @customer1.buys_drink(@drink3, @pub)
-    @customer1.buys_drink(@drink3, @pub)
-    result = @customer1.buys_drink(@drink3, @pub)
+    @customer1.buys_drink(@drink3, @pub, @customer1)
+    @customer1.buys_drink(@drink3, @pub, @customer1)
+    result = @customer1.buys_drink(@drink3, @pub, @customer1)
     assert_equal(12, result)
   end
 
