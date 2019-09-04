@@ -17,7 +17,7 @@ class TestDrink < MiniTest::Test
   end
 
   def test_drink_has_price()
-    assert_equal(3, @drink2.price())
+    assert_equal(3, @drink2.get_price())
   end
 
 end

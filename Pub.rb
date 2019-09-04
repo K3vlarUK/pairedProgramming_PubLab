@@ -12,4 +12,8 @@ class Pub
     return @drinks.length()
   end
 
+  def increase_till(drink)
+    @till += drink.get_price()
+  end
+
 end

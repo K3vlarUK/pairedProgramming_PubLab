@@ -30,4 +30,9 @@ class TestPub < MiniTest::Test
     assert_equal(3, @pub.drinks_menu())
   end
 
+  def test_increase_till()
+    @pub.increase_till(@drink3)
+    assert_equal(1005, @pub.till())
+  end
+
 end
